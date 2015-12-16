@@ -1,0 +1,93 @@
+
+// mixins
+.rg-grid-create(@int, @pre, @width) {
+
+    // column width
+    .rg-col-@{pre}-@{int} {
+        width: @width;
+    }
+
+    // offset the column
+    .rg-col-@{pre}-offset-@{int} {
+        margin-left: @width;
+    }
+
+    // push column to the right
+    .rg-col-@{pre}-push-@{int} {
+        left: @width;
+    }
+
+    // pull column to the left
+    .rg-col-@{pre}-pull-@{int} {
+        left: -@width;
+    }
+}
+
+.rg-grid-loop (@int, @total, @pre) when (@int >= 0) {
+    @width: round((100% * (@int / @total)), 5);
+
+    .rg-grid-create(@int, @pre, @width);
+
+    // recurse
+    .rg-grid-loop(@int - 1, @total, @pre);
+}
+
+// classes
+.rg-wrapper {
+	width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: @rg-wrapper-max-width;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.rg-row {
+	position: relative;
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+
+    // clearfix
+    &:before,
+    &:after {
+        content: "\0020";
+        height: 0;
+        display: block;
+        overflow: hidden;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.rg-col {
+	position: relative;
+    float: left;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+// generated classes
+
+// xs
+.rg-grid-loop(@rg-column-count, @rg-column-count, xs);
+
+// sm
+@media (min-width: @sm-min-width~"px") {
+    .rg-grid-loop(@rg-column-count, @rg-column-count, sm);
+}
+
+// md
+@media (min-width: @md-min-width~"px") {
+    .rg-grid-loop(@rg-column-count, @rg-column-count, md);
+}
+
+// lg
+@media (min-width: @lg-min-width~"px") {
+    .rg-grid-loop(@rg-column-count, @rg-column-count, lg);
+}
+
+// xl
+@media (min-width: @xl-min-width~"px") {
+    .rg-grid-loop(@rg-column-count, @rg-column-count, xl);
+}
