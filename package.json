@@ -1,0 +1,13 @@
+{
+  "name": "rem-grid",
+  "version": "1.0.0",
+  "devDependencies": {
+    "autoprefixer": "^6.1.2",
+    "cssnano": "^3.4.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-less": "^0.8.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-postcss": "^0.7.1",
+    "load-grunt-tasks": "^1.0.0"
+  }
+}
