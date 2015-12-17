@@ -1,0 +1,22 @@
+{
+  "name": "rem-grid",
+  "description": "A customizable, grid-system-only library that takes advantage of rem units for spacing.",
+  "main": "src/less/rem-grid.less",
+  "authors": [
+    "R.A. Ray <robert.adam.ray@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "less"
+  ],
+  "homepage": "https://github.com/raray/rem-grid",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

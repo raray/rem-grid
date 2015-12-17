@@ -8,7 +8,7 @@
 
         <title>REM Grid</title>
 
-        <link rel="stylesheet" href="/dist/css/rem-grid.css">
+        <link rel="stylesheet" href="/css/rem-grid.css">
     </head>
 
     <body>
@@ -24,6 +24,14 @@
                     </div>
                     <?php endfor; ?>
                     
+                </div>
+
+                <?php // one full row ?>
+                <div class="rg-row">
+                    <div class="rg-col rg-col-xs-12">
+                        <div class="box">
+                        </div>
+                    </div>
                 </div>
 
                 <?php // two columns for six rows ?>

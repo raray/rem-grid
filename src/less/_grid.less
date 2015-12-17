@@ -1,5 +1,28 @@
 
 // mixins
+
+// offset the column to the right
+.rg-grid-offset(@pre, @int, @width) when (@int < @rg-col-num) {
+    .rg-col-@{pre}-offset-@{int} {
+        margin-left: @width;
+    }
+}
+
+// push the column to the right
+.rg-grid-push(@pre, @int, @width) when (@int < @rg-col-num) {
+    .rg-col-@{pre}-push-@{int} {
+        left: @width;
+    }
+}
+
+// pull the column to the left
+.rg-grid-pull(@pre, @int, @width) when (@int < @rg-col-num) {
+    .rg-col-@{pre}-pull-@{int} {
+            left: -@width;
+        }
+}
+
+// create a full set of column classes
 .rg-grid-create(@int, @pre, @width) {
 
     // column width
@@ -7,22 +30,12 @@
         width: @width;
     }
 
-    // offset the column
-    .rg-col-@{pre}-offset-@{int} {
-        margin-left: @width;
-    }
-
-    // push column to the right
-    .rg-col-@{pre}-push-@{int} {
-        left: @width;
-    }
-
-    // pull column to the left
-    .rg-col-@{pre}-pull-@{int} {
-        left: -@width;
-    }
+    .rg-grid-offset(@pre, @int, @width);
+    .rg-grid-push(@pre, @int, @width);
+    .rg-grid-pull(@pre, @int, @width);
 }
 
+// recursive loop to create all the grid classes for a single breakpoint (pre)
 .rg-grid-loop (@int, @total, @pre) when (@int >= 0) {
     @width: round((100% * (@int / @total)), 5);
 
@@ -32,34 +45,41 @@
     .rg-grid-loop(@int - 1, @total, @pre);
 }
 
-// classes
-.rg-wrapper {
+// static classes
+
+// controls the outer bounds
+.rg-wrapper,
+.rg-wrapper-full {
 	width: 100%;
     margin-left: auto;
     margin-right: auto;
-    max-width: @rg-wrapper-max-width;
 	padding-left: 1rem;
 	padding-right: 1rem;
 }
 
+.rg-wrapper {
+    max-width: @rg-wrapper-max-width;
+}
+
+// rows contain columns and clear for them
 .rg-row {
 	position: relative;
     margin-left: -0.5rem;
     margin-right: -0.5rem;
 
-    // clearfix
+    // clearfix - http://nicolasgallagher.com/micro-clearfix-hack/
     &:before,
     &:after {
-        content: "\0020";
-        height: 0;
-        display: block;
-        overflow: hidden;
+        content: " ";
+        display: table;
     }
+
     &:after {
         clear: both;
     }
 }
 
+// basic styles that all columns share
 .rg-col {
 	position: relative;
     float: left;
@@ -70,24 +90,24 @@
 // generated classes
 
 // xs
-.rg-grid-loop(@rg-column-count, @rg-column-count, xs);
+.rg-grid-loop(@rg-col-num, @rg-col-num, xs);
 
 // sm
-@media (min-width: @sm-min-width~"px") {
-    .rg-grid-loop(@rg-column-count, @rg-column-count, sm);
+@media (min-width: @sm-min) {
+    .rg-grid-loop(@rg-col-num, @rg-col-num, sm);
 }
 
 // md
-@media (min-width: @md-min-width~"px") {
-    .rg-grid-loop(@rg-column-count, @rg-column-count, md);
+@media (min-width: @md-min) {
+    .rg-grid-loop(@rg-col-num, @rg-col-num, md);
 }
 
 // lg
-@media (min-width: @lg-min-width~"px") {
-    .rg-grid-loop(@rg-column-count, @rg-column-count, lg);
+@media (min-width: @lg-min) {
+    .rg-grid-loop(@rg-col-num, @rg-col-num, lg);
 }
 
 // xl
-@media (min-width: @xl-min-width~"px") {
-    .rg-grid-loop(@rg-column-count, @rg-column-count, xl);
+@media (min-width: @xl-min) {
+    .rg-grid-loop(@rg-col-num, @rg-col-num, xl);
 }

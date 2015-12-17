@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg           : grunt.file.readJSON('package.json'),
-        styleDir      : '../dist/css',
+        styleDir      : 'demo/css',
         mainStyleFile : '<%= styleDir %>/<%= pkg.name %>.css',
 
         less: {
@@ -16,7 +16,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '<%= mainStyleFile %>': [
-                        'less/site.less'
+                        'demo/less/site.less'
                     ]
                 }
             },
@@ -29,7 +29,7 @@ module.exports = function(grunt) {
                 },
                 files: {
                     '<%= mainStyleFile %>': [
-                        'less/site.less'
+                        'demo/less/site.less'
                     ]
                 }
             }
@@ -57,7 +57,8 @@ module.exports = function(grunt) {
             },
             styles: {
                 files: [
-                    'less/**/*.less',
+                    'demo/less/**/*.less',
+                    'src/less/**/*.less',
                     'gruntfile.js'
                 ],
                 tasks: [
