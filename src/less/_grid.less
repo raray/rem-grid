@@ -18,11 +18,11 @@
 // pull the column to the left
 .rg-grid-pull(@pre, @int, @width) when (@int < @rg-col-num) {
     .rg-col-@{pre}-pull-@{int} {
-            left: -@width;
-        }
+        left: -@width;
+    }
 }
 
-// create a full set of column classes
+// create a full set of column classes using the above mixins
 .rg-grid-create(@int, @pre, @width) {
 
     // column width
